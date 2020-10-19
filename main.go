@@ -14,6 +14,7 @@ func main() {
 
 	fmt.Println(a.LinearSearch(5))  // 2
 	fmt.Println(a.LinearSearch(99)) // -1
+	fmt.Println(a.Contains(91))
 
 	a.Delete(2)
 	a.PrintData()
