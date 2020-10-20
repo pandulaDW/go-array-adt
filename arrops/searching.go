@@ -30,7 +30,7 @@ func (arr *ArrayADT) BinarySearch(value int) int {
 	high := arr.length
 	mid := (low + high) / 2
 
-	for true {
+	for low <= high && low != arr.length {
 		if arr.data[mid] == value {
 			return mid
 		}
@@ -39,9 +39,6 @@ func (arr *ArrayADT) BinarySearch(value int) int {
 		}
 		if value > arr.data[mid] {
 			low = mid + 1
-		}
-		if low > high || low == arr.length {
-			break
 		}
 		mid = (low + high) / 2
 	}
