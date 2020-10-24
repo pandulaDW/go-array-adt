@@ -1,8 +1,6 @@
 package main
 
-import (
-	"./arrops"
-)
+import "github.com/pandulaDW/go-array-adt/arrops"
 
 func main() {
 	a, _ := arrops.CreateArrayADT(0, 10)
