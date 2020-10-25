@@ -10,8 +10,8 @@ func (arr *ArrayADT) SetElement(index int, value int) {
 	arr.data[index] = value
 }
 
-// IsSorted checks if a given function is sorted either ascending or descending
-// based on the isAsc argument provided
+// IsSorted checks if a given function is sorted in either ascending or descending
+// order based on the isAsc argument provided
 func (arr *ArrayADT) IsSorted(isAsc bool) bool {
 
 	predicate := func(val1, val2 int) bool {
@@ -21,7 +21,7 @@ func (arr *ArrayADT) IsSorted(isAsc bool) bool {
 		return val1 > val2
 	}
 
-	for i := 0; i < arr.length-1; i++ {
+	for i := 0; i < len(arr.data)-1; i++ {
 		if !predicate(arr.data[i], arr.data[i+1]) {
 			return false
 		}

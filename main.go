@@ -9,7 +9,7 @@ import (
 func main() {
 	a, _ := arrops.CreateArrayADT(0, 10)
 
-	a.Push(10, 9, 5, 3)
+	a.Push(11, 4, 54, 23, 78)
 
-	fmt.Println(a.IsSorted(false))
+	fmt.Println(a.IsSorted(true))
 }
