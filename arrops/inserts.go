@@ -1,6 +1,8 @@
 package arrops
 
-import "math"
+import (
+	"math"
+)
 
 // Insert the value at the specified index
 func (arr *ArrayADT) Insert(index int, value int) {

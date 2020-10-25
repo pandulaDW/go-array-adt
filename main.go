@@ -1,6 +1,11 @@
 package main
 
-import "github.com/pandulaDW/go-array-adt/arrops"
+import (
+	"fmt"
+	"math/rand"
+
+	"github.com/pandulaDW/go-array-adt/arrops"
+)
 
 func main() {
 	a, _ := arrops.CreateArrayADT(0, 10)
@@ -12,4 +17,9 @@ func main() {
 	a.RotateRight()
 	a.RotateRight()
 	a.PrintData()
+
+	for i := 0; i < 10; i++ {
+		rand.Seed(int64(i))
+		fmt.Print(rand.Intn(100), ", ")
+	}
 }
