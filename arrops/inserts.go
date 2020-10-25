@@ -36,8 +36,15 @@ func (arr *ArrayADT) Push(elements ...int) {
 func (arr *ArrayADT) InsertSorted(value int) {
 
 	// if value is higher than maximum, just append the value to the end
-	if arr.data[arr.length-1] <= value {
+	if arr.data[arr.length-1] < value {
 		arr.Push(value)
+	}
+
+	// if value is lower than the minimum, shifts all other elements to right and insert at the beginning
+	if arr.data[0] > value {
+		arr.data = arr.data[:arr.length+1]
+		copy(arr.data[1:], arr.data[0:])
+		arr.data[0] = value
 	}
 
 	low, high := 0, arr.length
@@ -60,7 +67,7 @@ func (arr *ArrayADT) InsertSorted(value int) {
 	low, high = high, low
 
 	// extend the slice
-	arr.data = arr.data[0 : len(arr.data)+1]
+	arr.data = arr.data[:arr.length+1]
 
 	// copy the original elements from the high position to the end of the slice
 	copy(arr.data[high+1:arr.length+1], arr.data[high:])

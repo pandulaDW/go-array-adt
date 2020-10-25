@@ -12,6 +12,7 @@ func main() {
 	a.InsertSorted(10)
 	a.InsertSorted(3)
 	a.InsertSorted(20)
+	a.InsertSorted(0)
 
 	a.PrintData()
 }
