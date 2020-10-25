@@ -82,3 +82,39 @@ func (arr *ArrayADT) InsertSorted(value int) {
 	// update the length and capacity
 	arr.updateLenCap()
 }
+
+// MergeArray merges another array/slice with the current array and
+// maintains the array order. Can be considered as a set operation
+func (arr *ArrayADT) MergeArray(otherArr []int) {
+
+	var a, b []int
+	c := make([]int, arr.length+len(otherArr))
+
+	// assign aliases to long and short array
+	if arr.length >= len(otherArr) {
+		a, b = arr.data, otherArr
+	} else {
+		a, b = otherArr, arr.data
+	}
+
+	for i, j, k := 0, 0, 0; i < len(c); k++ {
+		if j == len(b) {
+			copy(c[k:], a[i:])
+			break
+		}
+
+		if a[i] < b[j] {
+			c[k] = a[i]
+			i++
+			continue
+		}
+		if a[i] > b[j] {
+			c[k] = b[j]
+			j++
+			continue
+		}
+	}
+
+	arr.data = c
+	arr.updateLenCap()
+}

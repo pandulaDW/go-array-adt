@@ -40,3 +40,35 @@ func (arr *ArrayADT) RotateRight() {
 	arr.ShiftRight()
 	arr.data[0] = lastEl
 }
+
+// ShiftsNegative shifts negative elements to the left
+func (arr *ArrayADT) ShiftsNegative() {
+	for i, j := 0, arr.length-1; i < arr.length; {
+
+		// loop until a positive element is found from the end side
+		if arr.data[j] > 0 {
+			j--
+		}
+
+		// loop until a negative element is found from the starting side
+		if arr.data[i] < 0 {
+			i++
+		}
+
+		// terminating condition
+		if i > j {
+			return
+		}
+
+		// if a negative element is found from the starting side, swap it with the end side
+		// if the end is still isn't positive, keep iterating
+		if arr.data[i] > 0 {
+			if arr.data[j] > 0 {
+				continue
+			}
+			arr.data[i], arr.data[j] = arr.data[j], arr.data[i]
+			i++
+			j--
+		}
+	}
+}
