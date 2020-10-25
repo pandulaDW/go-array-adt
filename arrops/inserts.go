@@ -28,3 +28,46 @@ func (arr *ArrayADT) Push(elements ...int) {
 	// set the ADT's length and cap
 	arr.updateLenCap()
 }
+
+// InsertSorted insert elements by preverserving the sort order. Acts as a set and
+// only unique elements will be inserted
+//
+// It assumes that the elements are sorted by ascending order and there's enough capacity
+func (arr *ArrayADT) InsertSorted(value int) {
+
+	// if value is higher than maximum, just append the value to the end
+	if arr.data[arr.length-1] <= value {
+		arr.Push(value)
+	}
+
+	low, high := 0, arr.length
+	mid := (low + high) / 2
+
+	for low <= high && low != arr.length {
+		if arr.data[mid] == value {
+			return
+		}
+		if arr.data[mid] > value {
+			high = mid - 1
+		}
+		if arr.data[mid] < value {
+			low = mid + 1
+		}
+		mid = (low + high) / 2
+	}
+
+	// switch the low and high values for clarity
+	low, high = high, low
+
+	// extend the slice
+	arr.data = arr.data[0 : len(arr.data)+1]
+
+	// copy the original elements from the high position to the end of the slice
+	copy(arr.data[high+1:arr.length+1], arr.data[high:])
+
+	// set the high position element the inserted value
+	arr.data[high] = value
+
+	// update the length and capacity
+	arr.updateLenCap()
+}

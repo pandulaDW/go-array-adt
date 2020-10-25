@@ -29,3 +29,13 @@ func TestGetCapacity(t *testing.T) {
 	arr, _ := CreateArrayADT(5, 10)
 	assert.Equal(t, 10, arr.GetSize())
 }
+
+func TestUpdateLenCap(t *testing.T) {
+	arr, _ := CreateArrayADT(5, 10)
+	arr.data = make([]int, 10, 15)
+	arr.updateLenCap()
+
+	// assert if length and capacity has been updated properly after a direct assignment
+	assert.Equal(t, 10, arr.length)
+	assert.Equal(t, 15, arr.capacity)
+}
