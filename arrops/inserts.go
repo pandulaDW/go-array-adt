@@ -32,12 +32,14 @@ func (arr *ArrayADT) Push(elements ...int) {
 // InsertSorted insert elements by preverserving the sort order. Acts as a set and
 // only unique elements will be inserted
 //
-// It assumes that the elements are sorted by ascending order and there's enough capacity
+// It assumes that the elements are sorted by ascending order and that there's enough capacity
 func (arr *ArrayADT) InsertSorted(value int) {
 
 	// if value is higher than maximum, just append the value to the end
 	if arr.data[arr.length-1] < value {
 		arr.Push(value)
+		arr.updateLenCap()
+		return
 	}
 
 	// if value is lower than the minimum, shifts all other elements to right and insert at the beginning
@@ -45,12 +47,14 @@ func (arr *ArrayADT) InsertSorted(value int) {
 		arr.data = arr.data[:arr.length+1]
 		copy(arr.data[1:], arr.data[0:])
 		arr.data[0] = value
+		arr.updateLenCap()
+		return
 	}
 
 	low, high := 0, arr.length
 	mid := (low + high) / 2
 
-	for low <= high && low != arr.length {
+	for low <= high {
 		if arr.data[mid] == value {
 			return
 		}

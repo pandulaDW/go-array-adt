@@ -1,18 +1,15 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/pandulaDW/go-array-adt/arrops"
 )
 
 func main() {
 	a, _ := arrops.CreateArrayADT(0, 10)
 
-	a.Push(1, 4, 5, 9, 12, 15)
+	a.Push(10, 9, 5, 3)
 
-	a.InsertSorted(10)
-	a.InsertSorted(3)
-	a.InsertSorted(20)
-	a.InsertSorted(0)
-
-	a.PrintData()
+	fmt.Println(a.IsSorted(false))
 }
